@@ -1,5 +1,14 @@
-from data import meals, combos
-from exceptions import MealTooBigError
+import sys
+import os
+
+# Get the absolute path of the parent directory containing the 'module' package
+module_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+# Add the 'module' directory to the Python path
+sys.path.insert(0, module_dir)
+from module.data import meals, combos
+from module.exceptions import MealTooBigError
+
 
 def calory_counter(*foods):
     total = 0
