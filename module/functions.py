@@ -7,19 +7,18 @@ module_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 # Add the 'module' directory to the Python path
 sys.path.insert(0, module_dir)
 from module.data import meals, combos
-from module.exceptions import MealTooBigError
+from module.exceptions import MealTooBigError, MealNotFoundError
 
 
 def calory_counter(*foods):
     total = 0
     for food in foods:
-        try:
+        if food in meals.keys():
             total += meals[food]['calories']
-        except KeyError:
-            try:
-                total += calory_counter(*combos[food]['meals'])
-            except KeyError :
-                print(f"{food} is not on the menu!")
+        elif food in combos.keys():
+            total += calory_counter(*combos[food]['meals'])
+        else:
+            raise MealNotFoundError(food)
     if total > 2000:
         raise MealTooBigError(total)
     return total
@@ -27,12 +26,11 @@ def calory_counter(*foods):
 def price_counter(*foods):
     total = 0
     for food in foods:
-        try:
+        if food in meals.keys():
             total += meals[food]['price']
-        except KeyError:
-            try:
-                total += combos[food]['price']
-            except KeyError :
-                print(f"{food} is not on the menu!")
+        elif food in combos.keys():
+            total += combos[food]['price']
+        else :
+            raise MealNotFoundError(food)
     return total
 

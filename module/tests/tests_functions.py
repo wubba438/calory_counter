@@ -3,7 +3,7 @@ print(sys.path)
 
 from unittest import TestCase
 from module.functions import calory_counter,price_counter
-from module.exceptions import MealTooBigError
+from module.exceptions import MealTooBigError, MealNotFoundError
 
 class CaloriesCounterTestCase(TestCase):
     def test_count_meals_calories(self):
@@ -26,16 +26,31 @@ class CaloriesCounterTestCase(TestCase):
             "Meal is too big! 2140 is way too much!",
             "Not expected error message"
         )
-
-class CaloriesCounterTestCase(TestCase):
+    def test_raise_error(self):
+        with self.assertRaises(MealNotFoundError) as e:
+            calory_counter('cdfghjk')
+        self.assertEqual(
+            e.exception.message,
+            "cdfghjk is not on the menu",
+            "Not expected error message"
+        )
+class PriceCounterTestCase(TestCase):
     def test_count_meals_price(self):
         result = price_counter('meal-2','meal-4','meal-6')
         self.assertEqual(result, 17, f"Expected 17 got {result}.")
     
-    def test_count_combo_calories(self):
+    def test_count_combo_price(self):
         result = price_counter('combo-1','combo-2')
         self.assertEqual(result, 21, f"Expected 21 got {result}.")
     
-    def test_count_meals_and_combos_calories(self):
+    def test_count_meals_and_combos_price(self):
         result = price_counter('combo-1','combo-2','meal-6')
         self.assertEqual(result, 25, f"Expected 25 got {result}.")
+    def test_raise_error(self):
+        with self.assertRaises(MealNotFoundError) as e:
+            price_counter('cdfghjk')
+        self.assertEqual(
+            e.exception.message,
+            "cdfghjk is not on the menu",
+            "Not expected error message"
+        )
