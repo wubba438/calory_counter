@@ -24,3 +24,15 @@ def calory_counter(*foods):
         raise MealTooBigError(total)
     return total
 
+def price_counter(*foods):
+    total = 0
+    for food in foods:
+        try:
+            total += meals[food]['price']
+        except KeyError:
+            try:
+                total += combos[food]['price']
+            except KeyError :
+                print(f"{food} is not on the menu!")
+    return total
+
