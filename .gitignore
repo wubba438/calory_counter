@@ -1,6 +1,15 @@
+# ignore my test notebook
 main.ipynb
 
+#ignore DS
 .DS_Store
-**/.DS_Store
+*/.DS_Store
 
+#ignore virtual environment
 .my_venv
+
+#ignore pycache
+__pycache__
+__pycache__/*
+*/__pycache__
+*/__pycache__?*
