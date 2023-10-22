@@ -69,3 +69,6 @@ combos = [
         "price": 10,
     }
 ]
+
+meals = {meal['id']: meal for meal in meals}
+combos = {combo['id']: combo for combo in combos}
