@@ -18,13 +18,13 @@ combos = {
 def calory_counter(*foods):
     total = 0
     for food in foods:
-        if food in meals:
+        try:
             total += meals[food]
-        elif food in combos:
-            for item in combos[food]:
-                total += meals[item]
-        else :
-            print("You have entered something not on the menu!")
-            return 1
+        except KeyError:
+            try:
+                for item in combos[food]:
+                    total += meals[item]
+            except KeyError :
+                print(f"{food} is not on the menu!")
     return total
 
