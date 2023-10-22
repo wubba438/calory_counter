@@ -22,8 +22,7 @@ def calory_counter(*foods):
             total += meals[food]
         except KeyError:
             try:
-                for item in combos[food]:
-                    total += meals[item]
+                total += calory_counter(*combos[food])
             except KeyError :
                 print(f"{food} is not on the menu!")
     return total
