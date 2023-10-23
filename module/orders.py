@@ -37,12 +37,12 @@ class Order:
             self.calories = calory_counter(self.items)
         except(MealTooBigError, MealNotFoundError) as e:
             self.order_accepted = False
-            self.order_refused_reson = e.message
+            self.order_refused_reason = e.message
             self._calories = 0
             self._price = 0
         else:
             self.order_accepted = True
-            self.order_refused_reson = None
+            self.order_refused_reason = None
 
     @property
     def price(self):

@@ -41,19 +41,19 @@ class OrderTestCase(TestCase):
     def test_order_meal_too_big_error(self):
         order_3 = Order(['meal-1', 'meal-1', 'meal-1', 'meal-1'])
         result = order_3.order_accepted
-        result_2 = order_3.order_refused_reson
+        result_2 = order_3.order_refused_reason
         self.assertEqual(result, False, f"Expected False got {result}")
         self.assertEqual(result_2, 'Meal is too big! 2400 is way too much!', f"Not {result_2}")
     def test_order_meal_not_found_error(self):
         order_4 = Order(['gh'])
         result = order_4.order_accepted
-        result_2 = order_4.order_refused_reson
+        result_2 = order_4.order_refused_reason
         self.assertEqual(result, False, f"Expected False got {result}")
         self.assertEqual(result_2, "gh is not on the menu", f"Not {result_2}")
     def test_order_meal_accepted_correctly(self):
         order_3 = Order(['meal-1','meal-2'])
         result = order_3.order_accepted
-        result_2 = order_3.order_refused_reson
+        result_2 = order_3.order_refused_reason
         self.assertEqual(result, True, f"Expected True got {result}")
         self.assertEqual(result_2, None, f"Not {result_2}")
         
