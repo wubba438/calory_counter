@@ -15,6 +15,7 @@ def calory_counter(foods):
         raise MealTooBigError(total)
     return total
 
+
 def price_counter(foods):
     total = 0
     for food in foods:
@@ -22,6 +23,6 @@ def price_counter(foods):
             total += meals[food]['price']
         elif food in combos.keys():
             total += combos[food]['price']
-        else :
+        else:
             raise MealNotFoundError(food)
     return total

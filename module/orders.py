@@ -2,6 +2,7 @@ from datetime import datetime
 from module.functions import calory_counter, price_counter
 from module.exceptions import MealNotFoundError, MealTooBigError
 
+
 class Order:
     """
     This class represents an order.
@@ -23,7 +24,7 @@ class Order:
     """
     counter = 0
 
-    def __init__(self, items, date = None):
+    def __init__(self, items, date=None):
         Order.counter += 1
         self.order_id = f"order-{Order.counter}"
         self.items = items
@@ -35,7 +36,7 @@ class Order:
         self._price = None
         try:
             self.calories = calory_counter(self.items)
-        except(MealTooBigError, MealNotFoundError) as e:
+        except (MealTooBigError, MealNotFoundError) as e:
             self.order_accepted = False
             self.order_refused_reason = e.message
             self._calories = 0
