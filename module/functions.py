@@ -25,5 +25,3 @@ def price_counter(foods):
         else :
             raise MealNotFoundError(food)
     return total
-import sys
-print(sys.path)

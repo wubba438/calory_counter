@@ -33,7 +33,7 @@ python -m pip install -r requirements.txt
 ```
 
 ### Files
-MOst of the code is located in the `module` module. It contains:
+Most of the code is located in the `module` module. It contains:
 
 - The main class `Order` in the orders.py file
 - Functions to calculate the price and calories in the functions.py
